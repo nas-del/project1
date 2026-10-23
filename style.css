@@ -1,0 +1,142 @@
+:root {
+  --sky: #dcebf5;
+  --ocean: #0b2c4a;
+  --coral: #ff5a4e;
+  --sun: #ffc93c;
+  --ink: #0b2c4a;
+  --ring: rgba(11, 44, 74, .22);
+}
+
+/* ---------- navigation (used on every page) ---------- */
+.site-nav {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem clamp(1.25rem, 4vw, 3rem);
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+}
+.site-nav .brand {
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -.02em;
+  color: var(--ocean);
+  text-decoration: none;
+}
+.site-nav .brand i { font-style: normal; color: var(--coral); }
+.site-nav ul { display: flex; gap: .5rem; list-style: none; margin: 0; padding: 0; }
+.site-nav a.link {
+  display: inline-block;
+  padding: .45rem .95rem;
+  border-radius: 999px;
+  color: var(--ocean);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background .2s, color .2s;
+}
+.site-nav a.link:hover { background: rgba(11, 44, 74, .08); }
+.site-nav a.link[aria-current="page"] { background: var(--ocean); color: var(--sky); }
+.site-nav a:focus-visible,
+.btn:focus-visible { outline: 3px solid var(--coral); outline-offset: 2px; }
+
+/* ---------- about + contact pages ---------- */
+body.page {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--sky);
+  color: var(--ink);
+  font-family: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  position: relative;
+}
+body.page * { box-sizing: border-box; }
+.wrap {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 8rem clamp(1.25rem, 4vw, 3rem) 5rem;
+}
+.wrap h1 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(2.8rem, 9vw, 5.5rem);
+  font-weight: 800;
+  line-height: .95;
+  letter-spacing: -.035em;
+}
+.wrap h1 em { font-style: normal; color: var(--coral); }
+.lede {
+  max-width: 34rem;
+  font-size: clamp(1.1rem, 2.6vw, 1.4rem);
+  line-height: 1.45;
+  margin: 0 0 3rem;
+}
+.facts {
+  display: grid;
+  gap: 2.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  border-top: 2px solid var(--ocean);
+  padding-top: 2rem;
+}
+.facts h2 { margin: 0 0 .5rem; font-size: 1.25rem; font-weight: 800; }
+.facts p { margin: 0; line-height: 1.55; max-width: 28rem; }
+.facts h2::before {
+  content: "";
+  display: inline-block;
+  width: .7rem; height: .7rem;
+  border-radius: 50%;
+  margin-right: .6rem;
+  background: var(--coral);
+}
+.facts div:nth-child(2) h2::before { background: var(--sun); }
+.facts div:nth-child(3) h2::before { background: var(--ocean); }
+
+.btn {
+  display: inline-block;
+  margin-top: 3rem;
+  padding: .9rem 1.6rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--coral);
+  color: #fff;
+  font: 800 1rem/1 "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform .15s, background .2s;
+}
+.btn:hover { background: #e84438; transform: translateY(-2px); }
+
+/* contact form */
+form { display: grid; gap: 1.25rem; max-width: 34rem; }
+label { display: grid; gap: .4rem; font-weight: 500; }
+input, textarea {
+  width: 100%;
+  padding: .85rem 1rem;
+  border: 2px solid var(--ring);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  transition: border-color .2s;
+}
+input:focus, textarea:focus { outline: none; border-color: var(--coral); }
+textarea { min-height: 9rem; resize: vertical; }
+form .btn { justify-self: start; margin-top: .5rem; }
+.status { min-height: 1.5rem; font-weight: 500; margin: 0; }
+.direct { margin-top: 3rem; line-height: 1.6; }
+.direct a { color: var(--ocean); font-weight: 800; }
+
+.sun-dot {
+  position: absolute;
+  top: 7rem; right: clamp(1.25rem, 8vw, 6rem);
+  width: clamp(3rem, 9vw, 6rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--sun);
+  box-shadow: 0 0 0 10px rgba(255, 201, 60, .25);
+  z-index: 0;
+}
+
+@media (max-width: 520px) {
+  .site-nav a.link { padding: .4rem .65rem; }
+  .site-nav .brand { font-size: 1rem; }
+}

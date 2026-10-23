@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact · Hello, World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="page">
+  <nav class="site-nav">
+    <a class="brand" href="hello-world.html">Hello<i>.</i></a>
+    <ul>
+      <li><a class="link" href="hello-world.html">Home</a></li>
+      <li><a class="link" href="about.html">About</a></li>
+      <li><a class="link" href="contact.html" aria-current="page">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="sun-dot" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <h1>Say <em>hello</em><br>back.</h1>
+    <p class="lede">Write a message and your email app will open with it ready to send.</p>
+
+    <form id="contact-form">
+      <label>Your name
+        <input type="text" name="name" autocomplete="name" required>
+      </label>
+      <label>Your email
+        <input type="email" name="email" autocomplete="email" required>
+      </label>
+      <label>Message
+        <textarea name="message" required></textarea>
+      </label>
+      <button class="btn" type="submit">Send message</button>
+      <p class="status" id="status" role="status"></p>
+    </form>
+
+    <p class="direct">
+      Prefer to write directly? Email
+      <a href="mailto:hello@example.com">hello@example.com</a>.
+    </p>
+  </main>
+
+  <script>
+    // Change this to your own address.
+    var TO = "hello@example.com";
+
+    document.getElementById("contact-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var f = e.target;
+      var subject = "Message from " + f.name.value;
+      var body = f.message.value + "\n\n— " + f.name.value + " (" + f.email.value + ")";
+      window.location.href = "mailto:" + TO +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
+      document.getElementById("status").textContent = "Opening your email app…";
+    });
+  </script>
+</body>
+</html>
