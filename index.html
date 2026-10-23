@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hello, World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  :root {
+    --sky: #dcebf5;
+    --ocean: #0b2c4a;
+    --coral: #ff5a4e;
+    --sun: #ffc93c;
+    --ink: #0b2c4a;
+    --ring: rgba(11, 44, 74, .22);
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { height: 100%; }
+  body {
+    display: grid;
+    place-items: center;
+    background: var(--sky);
+    color: var(--ink);
+    font-family: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    overflow: hidden;
+  }
+  .stage {
+    position: relative;
+    width: min(92vmin, 760px);
+    aspect-ratio: 1;
+  }
+  svg { width: 100%; height: 100%; overflow: visible; }
+
+  /* the one memorable thing: a ring of greetings slowly orbiting */
+  .orbit { transform-origin: 400px 400px; animation: spin 90s linear infinite; }
+  .orbit-2 { transform-origin: 400px 400px; animation: spin 140s linear infinite reverse; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .greet { font-size: 30px; font-weight: 500; fill: var(--ocean); letter-spacing: .04em; }
+  .greet-2 { font-size: 22px; font-weight: 500; fill: var(--ocean); opacity: .55; letter-spacing: .06em; }
+
+  .hero {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    pointer-events: none;
+  }
+  h1 {
+    font-size: clamp(3rem, 12vmin, 6.6rem);
+    font-weight: 800;
+    line-height: .92;
+    letter-spacing: -.035em;
+  }
+  h1 span { display: block; }
+  h1 .world { color: var(--coral); }
+  .dot { color: var(--sun); }
+  p {
+    margin-top: 1.1rem;
+    font-size: clamp(.9rem, 2.3vmin, 1.15rem);
+    font-weight: 500;
+    opacity: .7;
+  }
+
+  /* single page-load reveal */
+  .hero h1, .hero p { animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
+  .hero p { animation-delay: .25s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+
+  .sun {
+    position: absolute;
+    width: 11%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--sun);
+    left: 74%;
+    top: 14%;
+    box-shadow: 0 0 0 10px rgba(255, 201, 60, .25);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .orbit, .orbit-2, .hero h1, .hero p { animation: none; }
+  }
+</style>
+</head>
+<body>
+  <nav class="site-nav">
+    <a class="brand" href="index.html">Hello<i>.</i></a>
+    <ul>
+      <li><a class="link" href="index.html" aria-current="page">Home</a></li>
+      <li><a class="link" href="about.html">About</a></li>
+      <li><a class="link" href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <main class="stage">
+    <svg viewBox="0 0 800 800" aria-hidden="true">
+      <defs>
+        <path id="r1" d="M400,400 m-330,0 a330,330 0 1,1 660,0 a330,330 0 1,1 -660,0"/>
+        <path id="r2" d="M400,400 m-270,0 a270,270 0 1,1 540,0 a270,270 0 1,1 -540,0"/>
+      </defs>
+      <circle cx="400" cy="400" r="370" fill="none" stroke="var(--ring)" stroke-width="1.5"/>
+      <circle cx="400" cy="400" r="295" fill="none" stroke="var(--ring)" stroke-width="1.5" stroke-dasharray="2 9" stroke-linecap="round"/>
+      <circle cx="400" cy="400" r="235" fill="none" stroke="var(--ring)" stroke-width="1.5"/>
+
+      <g class="orbit">
+        <text class="greet">
+          <textPath href="#r1" startOffset="0">Hello &#160;•&#160; Hola &#160;•&#160; Bonjour &#160;•&#160; Ciao &#160;•&#160; Hallo &#160;•&#160; Jambo &#160;•&#160; Olá &#160;•&#160; Namaste &#160;•&#160; Salaam &#160;•&#160; Konnichiwa &#160;•&#160; Annyeong &#160;•&#160; Merhaba &#160;•&#160; Privet &#160;•&#160;</textPath>
+        </text>
+      </g>
+      <g class="orbit-2">
+        <text class="greet-2">
+          <textPath href="#r2" startOffset="0">Habari &#160;•&#160; Shalom &#160;•&#160; Hej &#160;•&#160; Ni hao &#160;•&#160; Sawubona &#160;•&#160; Aloha &#160;•&#160; Salut &#160;•&#160; Yassou &#160;•&#160; Sawasdee &#160;•&#160; Mambo &#160;•&#160; Hallo &#160;•&#160;</textPath>
+        </text>
+      </g>
+    </svg>
+
+    <div class="sun"></div>
+
+    <div class="hero">
+      <h1><span>Hello,</span><span class="world">World<span class="dot" style="display:inline">.</span></span></h1>
+      <p>Said in every language, meant the same way.</p>
+    </div>
+  </main>
+</body>
+</html>
